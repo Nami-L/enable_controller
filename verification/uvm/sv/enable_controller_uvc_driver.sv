@@ -45,7 +45,7 @@ endtask: run_phase
 
 task enable_controller_uvc_driver::do_drive();
 
- // `uvm_info(get_type_name(), {"\n ------ DRIVER (Enable Controller UVC) ------", req.convert2string()}, UVM_DEBUG)
+  `uvm_info(get_type_name(), {"\n ------ DRIVER (Enable Controller UVC) ------", req.convert2string()}, UVM_DEBUG)
 
 endtask: do_drive
 

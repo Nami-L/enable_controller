@@ -17,8 +17,10 @@ package enable_controller_uvc_pkg;
 
 
 
-
+// AGREGAR LIBRERIA
+  `include "enable_controller_uvc_sequence_base.sv"
 
 endpackage:enable_controller_uvc_pkg
+
 
 `endif //ENABLE_CONTROLLER_UVC_PKG_SV
