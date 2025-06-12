@@ -17,7 +17,8 @@ module tb;
   end
 
   //COLOCAR LA INTERFAZ
-  enable_controller_uvc_if enable_controller_vif(clk_i,reset_i);
+  //reset_i
+  enable_controller_uvc_if enable_controller_vif(clk_i);
 
   //INSTANCIAR EL DUT CON LA INTERFAZ
 

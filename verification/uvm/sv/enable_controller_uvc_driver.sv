@@ -45,7 +45,11 @@ endtask: run_phase
 
 task enable_controller_uvc_driver::do_drive();
 
+@(vif.cb_drv);
+
   `uvm_info(get_type_name(), {"\n ------ DRIVER (Enable Controller UVC) ------", req.convert2string()}, UVM_DEBUG)
+vif.cb_drv.reset_i <= req.m_reset;
+
 
 endtask: do_drive
 

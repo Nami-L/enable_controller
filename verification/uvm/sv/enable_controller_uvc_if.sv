@@ -2,10 +2,10 @@
 `define ENABLE_CONTROLLER_UVC_IF_SV
 
 interface enable_controller_uvc_if 
-(input logic clk_i,
-input logic reset_i);
+(input logic clk_i);
+//input logic reset_i);
 
-
+    logic reset_i;
      logic enable1_o;    // Enable en ciclo 0 (1 ciclo)
      logic enable2_o;    // Enable en ciclo 1 (1 ciclo)
      logic enable3_o;    // Enable en ciclos 2 y 3 (2 ciclos)
@@ -32,14 +32,14 @@ input logic reset_i);
 //SON SALIDS DEL DRIVER QUE ENTRAS AL DUT
 clocking cb_drv @(posedge clk_i);
     default input #1ns output #1ns;
+     output reset_i;
 endclocking: cb_drv
 
 //EL MONITOR LEE LO QUE TENGA LA SALIDA DEL DUT, POR LO TANTO
 //ES UNA ENTRADA
 clocking cb_mon @(posedge clk_i);
     default input #1ns output #1ns;
-     input clk_i;
-     input reset_i;
+    
      input enable1_o;    // Enable en ciclo 0 (1 ciclo)
      input enable2_o;    // Enable en ciclo 1 (1 ciclo)
      input enable3_o;    // Enable en ciclos 2 y 3 (2 ciclos)

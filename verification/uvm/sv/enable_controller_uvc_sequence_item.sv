@@ -6,7 +6,7 @@ class enable_controller_uvc_sequence_item extends uvm_sequence_item;
 
 
 //TRANSACTION VARIABLES: INPUTS
-
+rand logic m_reset;
 //READ VARIABLES :OUTPUTS
      logic m_enable1;    // Enable en ciclo 0 (1 ciclo)
      logic m_enable2;    // Enable en ciclo 1 (1 ciclo)
@@ -37,7 +37,7 @@ enable_controller_uvc_sequence_item rhs_;
 
  if (!$cast(rhs_, rhs)) `uvm_fatal(get_type_name(), "Cast of rhs object failed")
   super.do_copy(rhs);
-
+        m_reset = rhs_.m_reset;
         m_enable1  =rhs_.m_enable1;
         m_enable2 =rhs_.m_enable2;
         m_enable3 =rhs_.m_enable3;
@@ -58,6 +58,7 @@ enable_controller_uvc_sequence_item rhs_;
   if (!$cast(rhs_, rhs)) `uvm_fatal(get_type_name(), "Cast of rhs object failed")
 
 result = super.do_compare(rhs, comparer);
+result &= (m_reset == rhs_.m_reset);
 result &= (m_enable1 == rhs_.m_enable1);
 result &= (m_enable2 == rhs_.m_enable2);
 result &= (m_enable3 == rhs_.m_enable3);
@@ -84,8 +85,8 @@ function string enable_controller_uvc_sequence_item::convert2string();
   string s;
   s = super.convert2string();
   $sformat(s, {s, "\n", "TRANSACTION INFORMATION (Enable Controller UVC):"});
-  $sformat(s, {s, "\n", "m_enable1 = %5d, m_enable2= %5d, m_enable3 = %5d, m_enable4 = %5d, m_enable5 = %5d, m_enable7 = %5d, m_enable8 = %5d, m_enable9 = %5d, m_enable10 = %5d\n"},
-            m_enable1, m_enable2, m_enable3, m_enable4, m_enable5, m_enable6, m_enable7, m_enable8, m_enable9, m_enable10);
+  $sformat(s, {s, "\n", "m_enable1 = %5d, m_enable2= %5d, m_enable3 = %5d, m_enable4 = %5d, m_enable5 = %5d, m_enable7 = %5d, m_enable8 = %5d, m_enable9 = %5d, m_enable10 = %5d, m_reset = %5d\n"},
+            m_enable1, m_enable2, m_enable3, m_enable4, m_enable5, m_enable6, m_enable7, m_enable8, m_enable9, m_enable10, m_reset);
   return s;
 
 endfunction: convert2string

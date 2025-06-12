@@ -24,6 +24,7 @@ seq = enable_controller_uvc_sequence_base::type_id::create("seq");
         // m_trans no se declara ni se crea en top_test_vseq, porque ya está declarado y 
         // creado dentro de la clase uvc_sequence_base
 
+        m_trans.m_reset inside {[0:1]};
           
 
       }))
@@ -38,13 +39,13 @@ task top_test_vseq::body();
   // Initial delay
   #(30ns);
 
-  repeat (0) begin
+  repeat (100) begin
     enable_controller_rand_seq();
     //#(10ns);
   end
 
   // Drain time
-  #(110ns);
+  #(106ns);
 
 endtask : body
 

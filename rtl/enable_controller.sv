@@ -38,11 +38,7 @@ module enable_controller (
             // Lgica de enables
             enable1_o <= (counter == 4'b0000);       // Ciclo 0
             enable2_o <= (counter == 4'b0001);       // Ciclo 1
-            enable3_o <= (counter == 4'b0010 //||      // Ciclo 2
-                        //counter == 4'b0011 ||
-					   //counter == 4'b0100 ||
-					   //counter == 4'b0101
-);       // Ciclo 3
+            enable3_o <= (counter == 4'b0010);       // Ciclo 3
             enable4_o <= (counter == 4'b0011);       // Ciclo 4	   
             enable5_o <= (counter == 4'b0100);       // Ciclo 5
             enable6_o <= (counter == 4'b0101);       // Ciclo 6

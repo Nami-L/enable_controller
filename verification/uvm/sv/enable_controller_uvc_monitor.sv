@@ -10,7 +10,7 @@ enable_controller_uvc_config m_config;
 enable_controller_uvc_sequence_item m_trans;
 
 //VARIABLES TEMPORALES PARA LAS SALIDAS
-
+logic reset;
 logic enable1;
 logic enable2;
 logic enable3;
@@ -64,6 +64,7 @@ endtask : run_phase
 task enable_controller_uvc_monitor::do_mon();
 
   forever begin
+    reset= vif.reset_i;
     enable1= vif.enable1_o;
     enable2= vif.enable2_o;
     enable3= vif.enable3_o;
@@ -75,14 +76,15 @@ task enable_controller_uvc_monitor::do_mon();
     enable9= vif.enable9_o;
     enable10= vif.enable10_o;
 
-    @(vif.cb_mon);
+    @(vif.cb_drv);
       //LE ASIGNAMOS LO QUE TIENE LA INTERFAZ VIRTUAL AL MONITOR PARA QUE LO LEA
-
-if((enable1 != vif.enable1_o) ||(enable2 != vif.enable2_o) ||(enable3 != vif.enable3_o) ||(enable4 != vif.enable4_o)
+//
+if((enable1 != vif.enable1_o) || (reset != vif.reset_i)  ||(enable2 != vif.enable2_o) ||(enable3 != vif.enable3_o) ||(enable4 != vif.enable4_o)
  ||(enable5 != vif.enable5_o) ||(enable6 != vif.enable6_o) ||(enable1 != vif.enable1_o) 
  ||(enable7 != vif.enable7_o) ||(enable8 != vif.enable8_o) ||(enable9 != vif.enable9_o) ||
  (enable10 != vif.enable10_o)) begin
 
+    m_trans.m_reset = vif.reset_i;
     m_trans.m_enable1 = vif.enable1_o;
     m_trans.m_enable2 = vif.enable2_o;
     m_trans.m_enable3 = vif.enable3_o;
@@ -93,9 +95,6 @@ if((enable1 != vif.enable1_o) ||(enable2 != vif.enable2_o) ||(enable3 != vif.ena
     m_trans.m_enable8 = vif.enable8_o;
     m_trans.m_enable9 = vif.enable9_o;
     m_trans.m_enable10 = vif.enable10_o;
-
-
-
 
       `uvm_info(get_type_name(), {"\n ------ MONITOR (Enable_controller UVC) ------ ",
                                   m_trans.convert2string()}, UVM_DEBUG)
