@@ -38,13 +38,13 @@ task top_test_vseq::body();
   // Initial delay
   #(30ns);
 
-  repeat (1) begin
+  repeat (0) begin
     enable_controller_rand_seq();
     //#(10ns);
   end
 
   // Drain time
-  #(100ns);
+  #(110ns);
 
 endtask : body
 
